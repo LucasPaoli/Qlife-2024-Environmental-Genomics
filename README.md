@@ -4,7 +4,7 @@
 
 ### Description
 
-Add short description.
+This repository contains the teaching materials for the hands-on digital workshop on Environmental Genomics as part of the Qlife Winter Schoole 2024 (Quantitative Seascape Ecology of Marine Plankton). This workshop is taught by Tom Delmont (Genoscope), Lucia Campese (Napoli) and Lucas Paoli (Pasteur).
 
 ## Schedule
 
@@ -17,7 +17,7 @@ Add short description.
 
 ## Before arriving at the workshop
 
-0. You can familiarize yourself with unix ([here](https://astrobiomike.github.io/unix/unix-intro) and/or [here](https://sunagawalab.ethz.ch/share/teaching/bioinformatics_praktikum/index.html)) and [conda](https://astrobiomike.github.io/unix/conda-intro)
+0. You can familiarize yourself with unix ([here](https://astrobiomike.github.io/unix/unix-intro) and/or [here](https://sunagawalab.ethz.ch/share/teaching/ptb24/contents/1_Unix1/01_unixcommand.html) and [conda](https://astrobiomike.github.io/unix/conda-intro)
 
 1. You must have Anvi'o v8 installed on your laptop, see [anvio.org/install/](anvio.org/install/). 
 
