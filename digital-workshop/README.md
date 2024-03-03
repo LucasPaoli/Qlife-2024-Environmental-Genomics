@@ -46,11 +46,12 @@ The data is organised as follows:
 ```
 
 
-#### 2. Then we need to process those genomes with Anvi'o to generate a contigs database using [anvi-generate-contigs-database](https://anvio.org/help/8/programs/anvi-gen-contigs-database/). Start by having a look at the help page and try to write yourselfthe command.
+#### 2. Then we need to process those genomes with Anvi'o to generate a contigs database using [anvi-generate-contigs-database](https://anvio.org/help/8/programs/anvi-gen-contigs-database/). Start by having a look at the help page and try to write yourself the command (and don't forget to activate your environment with Anvi'o).
 <details>
 <summary><i>Click for solution.</I></summary>
 
 ```
+conda activate anvio-8
 anvi-gen-contigs-database -f trichodesmium-genomes.fa -T 8 -o trichodesmium-CONTIGS.db
 ```
 
@@ -73,7 +74,7 @@ anvi-import-collection -c trichodesmium-CONTIGS.db trichodesmium-genomes.infos -
 <summary><i>Click to display the commands.</I></summary>
 ```
 anvi-run-hmms -c trichodesmium-CONTIGS.db -T 8 -I Bacteria_71
-anvi-run-hmms -c trichodesmium-CONTIGS.db -H NitrogenFixationHmm 
+anvi-run-hmms -c trichodesmium-CONTIGS.db -H NitrogenFixationHmms 
 ```
 
 </details>
@@ -119,7 +120,14 @@ anvi-interactive --manual-mode -t Trichodesmium-Bacteria_71_TREE -p PROFILE.db -
 
 </details>
 
-#### 10. If you want to see how what you can get out of the interactive interface, you can run:
+<details>
+<summary><i>Click to display image.</I></summary>
+
+![This should have been an image](https://github.com/LucasPaoli/Qlife-2024-Environmental-Genomics/blob/main/digital-workshop/decorated-output.png?raw=true)
+
+</details>
+
+#### 10. If you want to load the interactive interface with the example decorated output, you can run:
 ```
 cd decorated-output/
 anvi-interactive --manual-mode -t Trichodesmium-Bacteria_71_TREE -p PROFILE.db -d metadata.txt
