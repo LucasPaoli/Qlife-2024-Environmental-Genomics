@@ -26,7 +26,7 @@ Download the folder indicated and follow the instructions in the README file.
 
 ## Second part fo the workshop
 
-1. We first want to download the data for this part of the workshop. Open your terminal (see intro to Unix [here](https://astrobiomike.github.io/unix/unix-intro) or [here](https://sunagawalab.ethz.ch/share/teaching/ptb24/contents/1_Unix1/01_unixcommand.html) if needed) and move to the desired directory. You can then download and extract the data needed with the following commands:
+#### 1. We first want to download the data for this part of the workshop. Open your terminal (see intro to Unix [here](https://astrobiomike.github.io/unix/unix-intro) or [here](https://sunagawalab.ethz.ch/share/teaching/ptb24/contents/1_Unix1/01_unixcommand.html) if needed) and move to the desired directory. You can then download and extract the data needed with the following commands:
 
 ```
 wget https://sunagawalab.ethz.ch/share/paolil/QLIFE_TRICHODESMIUM/trichodesmium-extended-data.tar.gz 
@@ -46,68 +46,80 @@ The data is organised as follows:
 ```
 
 
-2. Then we need to process those genomes with Anvi'o to generate a contigs database using [anvi-generate-contigs-database](https://anvio.org/help/8/programs/anvi-gen-contigs-database/). Start by having a look at the help page and try to write yourselfthe command.
+#### 2. Then we need to process those genomes with Anvi'o to generate a contigs database using [anvi-generate-contigs-database](https://anvio.org/help/8/programs/anvi-gen-contigs-database/). Start by having a look at the help page and try to write yourselfthe command.
 <details>
 <summary><i>Click for solution.</I></summary>
+
 ```
 anvi-gen-contigs-database -f trichodesmium-genomes.fa -T 8 -o trichodesmium-CONTIGS.db
 ```
+
 </details>
 
-3. We then need to give Anvi'o some information so we can move forward smoothly. We have to (1) generate a profile database associated with our contigs database and (2) provide a collection (a map between contigs and genomes) so Anvi'o knows what is what.
+#### 3. We then need to give Anvi'o some information so we can move forward smoothly. We have to (1) generate a profile database associated with our contigs database and (2) provide a collection (a map between contigs and genomes) so Anvi'o knows what is what.
 <details>
 <summary><i>Click to display the commands.</I></summary>
+
 ```
 anvi-profile -c trichodesmium-CONTIGS.db --blank-profile --skip-hierarchical-clustering -o PROFILE -S MAGs
 anvi-import-collection -c trichodesmium-CONTIGS.db trichodesmium-genomes.infos --contigs-mode -C MAGs -p PROFILE/PROFILE.db
 ```
+
 </details>
 
-4. Okay. We now have a set of databases that Anvi'o can work with, which contains all our Trichodesmium genomes. Now, let's annotate them. We want to (1) run the HMMs models for Bacterial universal marker genes as well as (2) run our curated set of HMMs specific to Nitrogen Fixation pathways. First, have a look at the help page of [anvi-run-hmms](https://anvio.org/help/8/programs/anvi-run-hmms/) and then check out the command below: 
+#### 4. Okay. We now have a set of databases that Anvi'o can work with, which contains all our Trichodesmium genomes. Now, let's annotate them. We want to (1) run the HMMs models for Bacterial universal marker genes as well as (2) run our curated set of HMMs specific to Nitrogen Fixation pathways. First, have a look at the help page of [anvi-run-hmms](https://anvio.org/help/8/programs/anvi-run-hmms/) and then check out the command below: 
 <details>
+
 <summary><i>Click to display the commands.</I></summary>
 ```
 anvi-run-hmms -c trichodesmium-CONTIGS.db -T 8 -I Bacteria_71
 anvi-run-hmms -c trichodesmium-CONTIGS.db -H NitrogenFixationHmm 
 ```
+
 </details>
 
-5. We can summarize those results to have a look at our data using [anvi-summarize](https://anvio.org/help/8/programs/anvi-summarize/) with the following command:
+#### 5. We can summarize those results to have a look at our data using [anvi-summarize](https://anvio.org/help/8/programs/anvi-summarize/) with the following command:
 ```
 anvi-summarize -c trichodesmium-CONTIGS.db -p PROFILE/PROFILE.db -o SUMMARY -C MAGs
 ```
 You can then open `SUMMARY/index.html` to look at the data in your browser.
 
-6. Alright, now is time to do some phylogenomics! First let's extract the sequences for the marker genes we want to build a phylogenetic tree with. This can be done with [anvi-get-sequences-for-hmm-hits](https://anvio.org/help/8/programs/anvi-get-sequences-for-hmm-hits/) since we already ran the HMMs in step 4.
+#### 6. Alright, now is time to do some phylogenomics! First let's extract the sequences for the marker genes we want to build a phylogenetic tree with. This can be done with [anvi-get-sequences-for-hmm-hits](https://anvio.org/help/8/programs/anvi-get-sequences-for-hmm-hits/) since we already ran the HMMs in step 4.
 <details>
 <summary><i>Click to display the commands.</I></summary>
+
 ```
 anvi-get-sequences-for-hmm-hits -c trichodesmium-CONTIGS.db -p PROFILE/PROFILE.db -C MAGs --hmm-sources Bacteria_71 --concatenate-genes -o Trichodesmium-Bacteria_71_ALIGN --return-best-hit
 ```
+
 </details>
 
-7. Now that we have the alignment, we can use build the tree. We can use the built-in option of Anvi'o with [anvi-gen-phylogenomic-tree](https://anvio.org/help/8/programs/anvi-gen-phylogenomic-tree/).
+#### 7. Now that we have the alignment, we can use build the tree. We can use the built-in option of Anvi'o with [anvi-gen-phylogenomic-tree](https://anvio.org/help/8/programs/anvi-gen-phylogenomic-tree/).
 <details>
 <summary><i>Click to display the commands.</I></summary>
+
 ```
 anvi-gen-phylogenomic-tree -f Trichodesmium-Bacteria_71_ALIGN -o Trichodesmium-Bacteria_71_TREE
 ```
+
 </details>
 
-8. We then want to build a table with the relevant information from our database that we can then display along with the tree. For that, you cant run:
+#### 8. We then want to build a table with the relevant information from our database that we can then display along with the tree. For that, you cant run:
 ```
 paste SUMMARY/bins_summary.txt <(cut -f 2-7 SUMMARY/bins_across_samples/hmms_NitrogenFixationHmms.txt) > metadata.txt
 ```
 
-9. And now it's time for the Anvi'o Magic, open the interactive interface by running [anvi-interactive](https://anvio.org/help/8/programs/anvi-interactive/).
+#### 9. And now it's time for the Anvi'o Magic, open the interactive interface by running [anvi-interactive](https://anvio.org/help/8/programs/anvi-interactive/).
 <details>
 <summary><i>Click to display the commands.</I></summary>
+
 ```
 anvi-interactive --manual-mode -t Trichodesmium-Bacteria_71_TREE -p PROFILE.db -d metadata.txt
 ```
+
 </details>
 
-10. If you want to see how what you can get out of the interactive interface, you can run:
+#### 10. If you want to see how what you can get out of the interactive interface, you can run:
 ```
 cd decorated-output/
 anvi-interactive --manual-mode -t Trichodesmium-Bacteria_71_TREE -p PROFILE.db -d metadata.txt
