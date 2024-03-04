@@ -98,13 +98,15 @@ anvi-gen-genomes-storage -e trichodesmium-pan/genomes-list-light.txt -o TRICHODE
 anvi-pan-genome -g TRICHODESMIUM_LIGHT_STORAGE_GENOMES.db -n TRICHODESMIUM -o Trichodesmium_Pangenome --skip-alignments -T 4
 ```
 
+</details>
+
 Same here... this can take quite some time, so we already computed the full pangenome database for you, which is available in `trichodesmium-pan`.
 
 <br>
 
 #### 6. Let's have a look at this pangenome using [anvi-display-pan](https://anvio.org/help/main/programs/anvi-display-pan/).
 
-</details>
+<details>
 <summary><i>Click to display the command.</I></summary>
 
 ```
@@ -115,7 +117,7 @@ anvi-display-pan -g trichodesmium-pan/TRICHODESMIUM_STORAGE_GENOMES.db -p tricho
 
 Try to analyse the data yourself. Once you have, you can look at [this figure](https://www.pnas.org/doi/full/10.1073/pnas.2112355118) built exaclty from this pangenome. You can reproduce this figure with the following command:
 
-</details>
+<details>
 <summary><i>Click to display the command.</I></summary>
 
 ```
