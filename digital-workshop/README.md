@@ -7,9 +7,9 @@
 | Time |  Topic  | Location
 |:-----------:|:----------:|:--------:|
 | 13:30 - 13:45 | Introduction to Pangenomics | Room 313 |
-| 13:45 - 15:00 | Case example: diazotrophy in Trichodesmium | Room 313 |
+| 13:45 - 15:00 | [Case example: diazotrophy in Trichodesmium](#first-part-of-the-workshop) | Room 313 |
 | 15:00 - 15:20 | Break | Room 313 |
-| 15:20 - 15:45 | Introduction to Phylogenomics and Extended Genomic Resources | Room 313 |
+| 15:20 - 15:45 | [Introduction to Phylogenomics and Extended Genomic Resources](#second-part-fo-the-workshop) | Room 313 |
 | 15:45 - 17:00 | Extended coverage of the Trichodemsium genus | Room 313 |
 
 ## Before arriving at the workshop
@@ -40,7 +40,6 @@ The data is organised as follows:
 ├── trichodesmium-genomes --> A directory with the genomes. 
 ├── trichodesmium-contigs-db --> The pre-computed contigs databases associated with the genomes.
 ├── trichodesmium-pan --> The pre-computed pan-genomics database. 
-├── NitrogenFixationHmms/ --> A curated set of HMM models to detect Nitrogen Fixation pathways. 
 └── decorated-output/ --> This folder contains the processed and decorated output, try to have a go with you own results before using it. 
 ```
 
@@ -79,7 +78,7 @@ anvi-run-hmms -c Trichodesmium_thiebautii_H9_4_CONTIGS.db -T 4 -I Bacteria_71
 <summary><i>Click to display the command.</I></summary>
 
 ```
-anvi-run-ncbi-cogs -c Trichodesmium_thiebautii_H9_4_CONTIGS.db
+anvi-run-ncbi-cogs -c Trichodesmium_thiebautii_H9_4_CONTIGS.db -T 4
 ```
 
 </details>
@@ -121,7 +120,7 @@ Try to analyse the data yourself. Once you have, you can look at [this figure](h
 <summary><i>Click to display the command.</I></summary>
 
 ```
-anvi-display-pan -g decorated-output/TRICHODESMIUM_STORAGE_GENOMES.db -p decorated-output/Trichodesmium_Pangenome/Trichodesmium-PAN.db
+anvi-display-pan -g decorated-output/Trichodesmium-GENOMES.db -p decorated-output/Trichodesmium-pangenome-PAN.db
 ```
 
 </details>
