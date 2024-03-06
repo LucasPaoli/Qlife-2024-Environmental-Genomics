@@ -185,8 +185,8 @@ anvi-import-collection -c trichodesmium-CONTIGS.db trichodesmium-genomes.infos -
 #### 4. Okay. We now have a set of databases that Anvi'o can work with, which contains all our Trichodesmium genomes. Now, let's annotate them. We want to (1) run the HMMs models for Bacterial universal marker genes as well as (2) run our curated set of HMMs specific to Nitrogen Fixation pathways. First, have a look at the help page of [anvi-run-hmms](https://anvio.org/help/8/programs/anvi-run-hmms/) and then check out the command below: 
 
 <details>
-
 <summary><i>Click to display the commands.</I></summary>
+
 ```
 anvi-run-hmms -c trichodesmium-CONTIGS.db -T 8 -I Bacteria_71
 anvi-run-hmms -c trichodesmium-CONTIGS.db -H NitrogenFixationHmms 
